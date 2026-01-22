@@ -1,6 +1,6 @@
 # UnoSkills
 
-Claude Code skills for Uno Platform development, WinUI 3 XAML best practices, and content marketing.
+Claude Code skills for Uno Platform development and WinUI 3 XAML best practices.
 
 ## WinUI 3 XAML Best Practices
 
@@ -11,7 +11,7 @@ Comprehensive, validated guidelines for building performant WinUI 3 applications
 ```
 WinUI-XAML-Skills/
 ├── 00-Index.md              # Quick reference & navigation
-├── 01-Layout.md             # Panel selection, visual tree depth
+├── 01-Layout.md             # Panel selection, AutoLayout, visual tree
 ├── 02-Binding.md            # x:Bind, modes, function binding
 ├── 03-Async-Threading.md    # UI thread, DispatcherQueue
 ├── 04-Collections.md        # Virtualization, ItemsRepeater
@@ -37,7 +37,7 @@ Each skill follows a consistent structure:
 - **Example**: Correct XAML/C# implementation
 - **Common Mistakes**: Anti-patterns to avoid
 - **Uno Platform Notes**: Platform-specific considerations
-- **Reference**: Microsoft Learn documentation link
+- **Reference**: Microsoft Learn or Uno Platform documentation link
 
 ### Top 10 Rules
 
@@ -50,7 +50,7 @@ Each skill follows a consistent structure:
 7. Use `OneTime` binding mode for static data
 8. Set `AutomationProperties` for accessibility
 9. Use `x:Uid` for all user-visible text
-10. Prefer `Grid` over nested `StackPanels`
+10. Use `AutoLayout` with `Spacing` instead of margins on children
 
 ### Validation
 
@@ -59,33 +59,9 @@ All skills validated against:
 - Uno Platform 5.6+ documentation
 - Windows App SDK 1.5+ APIs
 
-## Content Marketing Skills
-
-Skills for content creation and marketing workflows.
-
-| Skill | Description |
-|-------|-------------|
-| [00-Skills-Index](00-Skills-Index.md) | Master index and orchestration guide |
-| [01-Brand-Voice](01-Brand-Voice.md) | Brand voice and tone guidelines |
-| [02-Positioning-Angles](02-Positioning-Angles.md) | Market positioning strategies |
-| [03-Keyword-Research](03-Keyword-Research.md) | SEO keyword research |
-| [04-Lead-Magnet](04-Lead-Magnet.md) | Lead magnet creation |
-| [05-Direct-Response-Copy](05-Direct-Response-Copy.md) | Direct response copywriting |
-| [06-SEO-Content](06-SEO-Content.md) | SEO content optimization |
-| [07-Newsletter](07-Newsletter.md) | Newsletter writing |
-| [08-Email-Sequences](08-Email-Sequences.md) | Email sequence design |
-| [09-Content-Atomizer](09-Content-Atomizer.md) | Content repurposing |
-| [10-Orchestrator](10-Orchestrator.md) | Workflow orchestration |
-| [11-Trending-Topic-Finder](11-Trending-Topic-Finder.md) | Trend identification |
-
 ## Usage
 
-These skills are designed to be loaded as context for Claude Code:
-
-```bash
-# Reference in your project's .claude/settings.json
-# or load directly when working with Claude Code
-```
+These skills are designed to be loaded as context for Claude Code when working on Uno Platform projects.
 
 Skills provide:
 - Correct vs incorrect code examples
@@ -96,9 +72,9 @@ Skills provide:
 ## Related Resources
 
 - [Uno Platform Documentation](https://platform.uno/docs/articles/intro.html)
+- [Uno Toolkit](https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/getting-started.html)
 - [WinUI 3 Documentation](https://learn.microsoft.com/en-us/windows/apps/winui/winui3/)
 - [Windows App SDK](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/)
-- [Claude Code](https://claude.ai/claude-code)
 
 ## License
 

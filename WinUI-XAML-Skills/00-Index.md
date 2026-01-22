@@ -7,7 +7,7 @@
 
 | # | Category | Impact | File |
 |---|----------|--------|------|
-| 1 | [Layout](./01-Layout.md) | HIGH | Panel selection, visual tree depth, responsive design |
+| 1 | [Layout](./01-Layout.md) | HIGH | Panel selection, visual tree depth, AutoLayout, responsive design |
 | 2 | [Binding](./02-Binding.md) | HIGH | x:Bind vs Binding, modes, function binding |
 | 3 | [Async & Threading](./03-Async-Threading.md) | CRITICAL | UI thread, DispatcherQueue, parallelization |
 | 4 | [Collections & Virtualization](./04-Collections.md) | CRITICAL | ListView, ItemsRepeater, incremental loading |

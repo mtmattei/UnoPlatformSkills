@@ -317,3 +317,113 @@ foreach (var item in items)
 ```
 
 **Reference**: https://learn.microsoft.com/en-us/windows/apps/performance/optimize-xaml-layout
+
+---
+
+## LAYOUT-009: Use AutoLayout for Flexbox-Style Layouts (Uno Toolkit)
+
+**Rule**: Use `AutoLayout` from Uno Toolkit for linear layouts with consistent spacing. Set `Spacing` and `Padding` on the container - never set margins on children.
+
+**Why**: AutoLayout mirrors Figma's Auto Layout behavior, providing cleaner XAML than StackPanel with margins. It handles spacing uniformly, supports primary/counter axis alignment, and allows per-child size overrides. Eliminates inconsistent margin math.
+
+**Example (Correct)**:
+```xml
+xmlns:utu="using:Uno.Toolkit.UI"
+
+<!-- Vertical stack with consistent spacing -->
+<utu:AutoLayout Orientation="Vertical"
+                Spacing="12"
+                Padding="16"
+                PrimaryAxisAlignment="Start"
+                CounterAxisAlignment="Stretch">
+    <TextBlock Text="Title" Style="{StaticResource TitleTextBlockStyle}"/>
+    <TextBlock Text="Subtitle"/>
+    <Button Content="Action"/>
+</utu:AutoLayout>
+
+<!-- Horizontal layout with centered children -->
+<utu:AutoLayout Orientation="Horizontal"
+                Spacing="8"
+                Padding="16,12"
+                PrimaryAxisAlignment="Center"
+                CounterAxisAlignment="Center">
+    <Button Content="Cancel"/>
+    <Button Content="Save" Style="{StaticResource AccentButtonStyle}"/>
+</utu:AutoLayout>
+
+<!-- Child with explicit counter-axis size -->
+<utu:AutoLayout Orientation="Horizontal" Spacing="8">
+    <Border Background="LightGray"
+            utu:AutoLayout.CounterLength="48">
+        <TextBlock Text="Fixed 48px height"/>
+    </Border>
+    <TextBlock Text="Auto height" VerticalAlignment="Center"/>
+</utu:AutoLayout>
+
+<!-- Space-between distribution -->
+<utu:AutoLayout Orientation="Horizontal"
+                Justify="SpaceBetween"
+                Padding="16">
+    <TextBlock Text="Left"/>
+    <TextBlock Text="Right"/>
+</utu:AutoLayout>
+```
+
+**AutoLayout Properties**:
+| Property | Values | Description |
+|----------|--------|-------------|
+| `Orientation` | `Vertical`, `Horizontal` | Stack direction (primary axis) |
+| `Spacing` | Double | Gap between children |
+| `Padding` | Thickness | Inner padding |
+| `PrimaryAxisAlignment` | `Start`, `Center`, `End`, `Stretch` | Alignment along stack direction |
+| `CounterAxisAlignment` | `Start`, `Center`, `End`, `Stretch` | Alignment perpendicular to stack |
+| `Justify` | `Start`, `Center`, `End`, `SpaceBetween` | Distribution along primary axis |
+
+**Attached Properties** (per-child):
+| Property | Description |
+|----------|-------------|
+| `AutoLayout.PrimaryLength` | Fixed size on primary axis |
+| `AutoLayout.CounterLength` | Fixed size on counter axis |
+| `AutoLayout.CounterAlignment` | Override counter alignment for this child |
+| `AutoLayout.IsIndependentLayout` | Exclude from AutoLayout flow |
+
+**Common Mistakes**:
+```xml
+<!-- WRONG: Margins on children - use container Spacing instead -->
+<utu:AutoLayout Orientation="Vertical">
+    <TextBlock Text="Title" Margin="0,0,0,12"/>
+    <TextBlock Text="Subtitle" Margin="0,0,0,12"/>
+    <Button Content="Action" Margin="0,0,0,12"/>
+</utu:AutoLayout>
+
+<!-- WRONG: Nested AutoLayouts when one would suffice -->
+<utu:AutoLayout Orientation="Vertical">
+    <utu:AutoLayout Orientation="Horizontal">
+        <TextBlock Text="Label"/>
+    </utu:AutoLayout>
+</utu:AutoLayout>
+
+<!-- WRONG: Using StackPanel with manual spacing -->
+<StackPanel>
+    <TextBlock Text="Title" Margin="0,0,0,12"/>
+    <TextBlock Text="Subtitle" Margin="0,0,0,12"/>
+</StackPanel>
+```
+
+**Uno Platform Notes**: AutoLayout requires `Uno.Toolkit.UI` package. Add to your project:
+```xml
+<PackageReference Include="Uno.Toolkit.WinUI" Version="..." />
+```
+
+And register in App.xaml:
+```xml
+<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ToolkitResources xmlns="using:Uno.Toolkit.UI"/>
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Application.Resources>
+```
+
+**Reference**: https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/AutoLayoutControl.html

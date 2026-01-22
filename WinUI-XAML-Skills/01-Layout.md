@@ -223,13 +223,76 @@ visual.StartAnimation("Offset", animation);
 
 ---
 
-## LAYOUT-007: Use AdaptiveTrigger for Responsive Layouts
+## LAYOUT-007: Use Responsive Layout Techniques
 
-**Rule**: Use VisualStateManager with AdaptiveTrigger for responsive breakpoints instead of code-behind window size handlers.
+**Rule**: Use declarative responsive techniques instead of code-behind window size handlers. For Uno Platform, prefer `ResponsiveExtension` for property changes and `ResponsiveView` for layout changes. Use `AdaptiveTrigger` for WinUI 3 standard compatibility or when combining responsive states with animations.
 
-**Why**: AdaptiveTrigger is declarative, works with XAML Hot Reload, and is optimized for window resize events. Code-behind handlers can miss resize events or cause flickering.
+**Why**: Declarative approaches work with XAML Hot Reload, are optimized for resize events, and avoid flickering. Uno Toolkit's responsive helpers provide cleaner syntax with predefined breakpoints (Narrowest ≤150px, Narrow ≤300px, Normal ≤600px, Wide ≤800px, Widest ≤1080px).
 
-**Example (Correct)**:
+### Option 1: ResponsiveExtension (Uno Platform - Preferred for Property Changes)
+
+Best for: Changing individual property values based on screen width.
+
+```xml
+xmlns:utu="using:Uno.Toolkit.UI"
+
+<!-- Single property - inline and concise -->
+<StackPanel Orientation="{utu:Responsive Narrow=Vertical, Wide=Horizontal}">
+    <Grid Width="{utu:Responsive Narrow=0, Wide=300}"/>
+    <Grid/>
+</StackPanel>
+
+<!-- Multiple properties -->
+<TextBlock Text="Title"
+           FontSize="{utu:Responsive Narrow=16, Normal=20, Wide=24}"
+           Margin="{utu:Responsive Narrow='8,4', Wide='16,8'}"/>
+
+<!-- Custom breakpoints -->
+<Page.Resources>
+    <utu:ResponsiveLayout x:Key="CustomLayout" Narrow="400" Wide="1000"/>
+</Page.Resources>
+
+<StackPanel Orientation="{utu:Responsive Layout={StaticResource CustomLayout},
+                          Narrow=Vertical, Wide=Horizontal}"/>
+```
+
+### Option 2: ResponsiveView (Uno Platform - For Different Layouts)
+
+Best for: Completely different UI structures per breakpoint.
+
+```xml
+xmlns:utu="using:Uno.Toolkit.UI"
+
+<utu:ResponsiveView>
+    <utu:ResponsiveView.NarrowTemplate>
+        <DataTemplate>
+            <!-- Mobile: stacked layout -->
+            <StackPanel>
+                <Image Source="header.png"/>
+                <TextBlock Text="Title" Style="{StaticResource TitleTextBlockStyle}"/>
+                <TextBlock Text="Content"/>
+            </StackPanel>
+        </DataTemplate>
+    </utu:ResponsiveView.NarrowTemplate>
+    <utu:ResponsiveView.WideTemplate>
+        <DataTemplate>
+            <!-- Desktop: side-by-side layout -->
+            <Grid ColumnDefinitions="300,*">
+                <Image Source="header.png" Grid.Column="0"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Title" Style="{StaticResource TitleTextBlockStyle}"/>
+                    <TextBlock Text="Content"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </utu:ResponsiveView.WideTemplate>
+</utu:ResponsiveView>
+```
+
+### Option 3: AdaptiveTrigger (WinUI 3 Standard)
+
+Best for: Windows-only apps, combining responsive states with Storyboard animations, or when Uno Toolkit isn't available.
+
 ```xml
 <Grid>
     <VisualStateManager.VisualStateGroups>
@@ -262,6 +325,14 @@ visual.StartAnimation("Offset", animation);
 </Grid>
 ```
 
+**Comparison**:
+
+| Approach | Lines of XAML | Best For | Requires |
+|----------|---------------|----------|----------|
+| ResponsiveExtension | 1 per property | Property tweaks | Uno Toolkit |
+| ResponsiveView | Medium | Different layouts | Uno Toolkit |
+| AdaptiveTrigger | 15+ | Animations, WinUI standard | Nothing (built-in) |
+
 **Common Mistakes**:
 ```csharp
 // WRONG: Manual size handling in code-behind
@@ -280,7 +351,20 @@ private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
 }
 ```
 
-**Reference**: https://learn.microsoft.com/en-us/windows/apps/design/layout/layouts-with-xaml#adaptive-layouts-with-visual-states-and-state-triggers
+```xml
+<!-- WRONG: Using AdaptiveTrigger for simple property changes in Uno Platform apps -->
+<!-- Use ResponsiveExtension instead for cleaner syntax -->
+```
+
+**Uno Platform Notes**:
+- ResponsiveExtension has a UWP limitation: cannot directly use non-string properties. Use `{StaticResource}` references for complex types like brushes.
+- ResponsiveView and ResponsiveExtension require `Uno.Toolkit.WinUI` package.
+- Only define breakpoints you need - undefined breakpoints fall back to the nearest defined value.
+
+**References**:
+- https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/helpers/responsive-extension.html
+- https://platform.uno/docs/articles/external/uno.toolkit.ui/doc/controls/ResponsiveView.html
+- https://learn.microsoft.com/en-us/windows/apps/design/layout/layouts-with-xaml#adaptive-layouts-with-visual-states-and-state-triggers
 
 ---
 

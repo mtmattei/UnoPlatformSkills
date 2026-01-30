@@ -1,0 +1,4 @@
+.claude/
+last30days-skill/
+__pycache__/
+*.pyc

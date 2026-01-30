@@ -2,6 +2,10 @@
 
 Claude Code skills for Uno Platform development and WinUI 3 XAML best practices.
 
+## Example Prompt: 
+
+Use the winui-xaml and uno-platform-skills to review our Uno Platform codebase for best practices. Identify issues and opportunities across XAML, MVVM, navigation, performance, resource usage, theming, accessibility, and cross-platform considerations. Propose concrete improvements with rationale, prioritized by impact/effort, and include example code snippets or patch-style diffs for the highest-impact changes.
+
 ## Skills
 
 ### uno-platform-agent

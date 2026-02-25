@@ -1,4 +1,4 @@
-# UnoPlatformSkills
+# Uno Platform Skills
 
 Claude Code skills for Uno Platform development and WinUI 3 XAML best practices.
 

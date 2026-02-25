@@ -1,6 +1,9 @@
 ---
 name: winui-xaml
-description: "WinUI 3 and XAML best practices for layout, binding, async operations, collections, rendering, memory management, accessibility, and localization. Use when: (1) Working with WinUI 3 or Uno Platform XAML, (2) Optimizing UI performance, (3) Implementing data binding with x:Bind, (4) Managing collections and virtualization, (5) Ensuring accessibility compliance, (6) Handling async operations on UI thread, (7) Preventing memory leaks, (8) Implementing localization"
+description: "WinUI 3 and XAML best practices for layout, binding, async operations, collections, rendering, memory management, accessibility, and localization. Use when: (1) Working with WinUI 3 or Uno Platform XAML, (2) Optimizing UI performance, (3) Implementing data binding with x:Bind, (4) Managing collections and virtualization, (5) Ensuring accessibility compliance, (6) Handling async operations on UI thread, (7) Preventing memory leaks, (8) Implementing localization. Do NOT use for: C# Markup (see uno-csharp-markup) or Uno Toolkit controls (see uno-toolkit-controls)."
+license: "CC-BY-4.0 (patterns derived from Microsoft Learn documentation)"
+metadata:
+  version: "1.0.0"
 ---
 
 # WinUI 3 XAML Best Practices
@@ -74,6 +77,23 @@ All patterns validated against Uno Platform with notes for:
 - Platform-specific behavior differences
 - Unsupported APIs and alternatives
 - Skia renderer considerations
+
+## Common Mistakes
+
+- Blocking the UI thread with `.Result` or `.Wait()` instead of async/await
+- Using `{Binding}` instead of `{x:Bind}` (3x slower, no compile-time validation)
+- Nesting StackPanels deeply instead of using Grid (multiple layout passes vs one)
+- Forgetting to unsubscribe event handlers in Unloaded, causing memory leaks
+- Using ListView without virtualization for large lists (>20 items)
+
+## Related Skills
+
+| Skill | Use instead when... |
+|-------|-------------------|
+| `uno-platform-agent` | Setting up projects, MVVM/MVUX, navigation, or platform-specific code |
+| `uno-toolkit-controls` | Using AutoLayout, NavigationBar, SafeArea, TabBar, or ResponsiveExtension |
+| `uno-csharp-markup` | Building UI in C# instead of XAML |
+| `uno-extensions-services` | Configuring hosting, DI, authentication, or HTTP clients |
 
 ## Using References
 

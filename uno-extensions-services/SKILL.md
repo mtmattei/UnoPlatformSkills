@@ -1,6 +1,9 @@
 ---
 name: uno-extensions-services
-description: "Uno Platform Extensions for hosting, dependency injection, authentication, HTTP clients, configuration, logging, and storage. Use when: (1) Setting up IHostBuilder and DI container, (2) Adding MSAL or OIDC authentication, (3) Configuring HTTP clients with Kiota or Refit, (4) Loading appsettings.json configuration with IOptions, (5) Setting up logging with ILogger or Serilog, (6) Using IWriteableOptions for runtime config changes"
+description: "Uno Platform Extensions for hosting, dependency injection, authentication, HTTP clients, configuration, logging, and storage. Use when: (1) Setting up IHostBuilder and DI container, (2) Adding MSAL or OIDC authentication, (3) Configuring HTTP clients with Kiota or Refit, (4) Loading appsettings.json configuration with IOptions, (5) Setting up logging with ILogger or Serilog, (6) Using IWriteableOptions for runtime config changes. Do NOT use for: project setup or MVVM patterns (see uno-platform-agent) or UI controls (see uno-toolkit-controls)."
+license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
+metadata:
+  version: "1.0.0"
 ---
 
 # Uno Platform Extensions Services
@@ -77,11 +80,6 @@ var builder = this.CreateBuilder(args)
 )
 ```
 
-**Common Mistakes**:
-- Forgetting the Window parameter for MSAL on 5.2+
-- Not registering redirect URIs per platform (Android needs intent filter, iOS needs URL scheme)
-- Using `Authentication` UnoFeature alone without `AuthenticationMsal` or `AuthenticationOidc`
-
 ## HTTP Clients
 
 - **Kiota (preferred)**: Generate strongly-typed clients from OpenAPI specs
@@ -116,11 +114,6 @@ var builder = this.CreateBuilder(args)
   }
 }
 ```
-
-**Common Mistakes**:
-- Hardcoding base URLs instead of using configuration
-- Not using `UseNativeHandler: true` for platform-optimized networking
-- Creating `HttpClient` instances manually instead of through DI
 
 ## Configuration
 
@@ -161,6 +154,26 @@ public class MyViewModel
 )
 .UseSerilog()
 ```
+
+## Common Mistakes
+
+- Forgetting the `Window` parameter for `AddMsal()` on Uno.Extensions 5.2+
+- Not registering redirect URIs per platform (Android needs intent filter, iOS needs URL scheme)
+- Using `Authentication` UnoFeature alone without `AuthenticationMsal` or `AuthenticationOidc`
+- Hardcoding base URLs instead of using `appsettings.json` configuration
+- Not using `UseNativeHandler: true` for platform-optimized networking
+- Creating `HttpClient` instances manually instead of through DI
+- Calling `.UseHttp()` or `.UseAuthentication()` before `.UseConfiguration()` (configuration must come first)
+- Injecting `IServiceProvider` directly instead of using constructor injection
+
+## Related Skills
+
+| Skill | Use instead when... |
+|-------|-------------------|
+| `uno-platform-agent` | Setting up project structure, MVVM/MVUX, navigation, or build config |
+| `uno-migration-troubleshoot` | Upgrading Uno.Extensions versions or fixing breaking changes |
+| `winui-xaml` | XAML layout, binding, async, or memory management best practices |
+| `uno-wasm-pwa` | WebAssembly-specific hosting, debugging, or deployment |
 
 ## Detailed References
 

@@ -1,6 +1,9 @@
 ---
 name: uno-wasm-pwa
-description: "Uno Platform WebAssembly and Progressive Web App development: bootstrapper setup, PWA manifests, debugging, hosting, performance optimization, and deployment. Use when: (1) Targeting WebAssembly with Uno Platform, (2) Adding PWA support with service workers, (3) Debugging Wasm apps, (4) Deploying to Azure Static Web Apps or Nginx, (5) Optimizing Wasm payload size and load time, (6) Configuring AOT compilation for Wasm"
+description: "Uno Platform WebAssembly and Progressive Web App development: bootstrapper setup, PWA manifests, debugging, hosting, performance optimization, and deployment. Use when: (1) Targeting WebAssembly with Uno Platform, (2) Adding PWA support with service workers, (3) Debugging Wasm apps, (4) Deploying to Azure Static Web Apps or Nginx, (5) Optimizing Wasm payload size and load time, (6) Configuring AOT compilation for Wasm. Do NOT use for: general project setup (see uno-platform-agent) or .NET version migration (see uno-migration-troubleshoot)."
+license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
+metadata:
+  version: "1.0.0"
 ---
 
 # Uno Platform WebAssembly and PWA
@@ -33,14 +36,7 @@ Add via template or manually:
 dotnet new unoapp -pwa
 ```
 
-Or add manually:
-```xml
-<UnoFeatures>
-    <!-- other features -->
-</UnoFeatures>
-```
-
-PWA manifest file (`manifest.webmanifest`) must have `Content` build action. Place in the WebAssembly platform folder or project root.
+Or add to an existing project by placing `manifest.webmanifest` (with `Content` build action) in the WebAssembly platform folder and registering a service worker.
 
 ## Bootstrapper (Uno.Wasm.Bootstrap 9.x)
 
@@ -85,36 +81,11 @@ Ensure `launchSettings.json` contains the inspect URI in every profile:
 
 ### Azure Static Web Apps
 
-```yaml
-# GitHub Actions workflow
-- name: Publish
-  run: dotnet publish -c Release -f net9.0-browserwasm
-- name: Deploy
-  uses: Azure/static-web-apps-deploy@v1
-  with:
-    app_location: "bin/Release/net9.0-browserwasm/publish/wwwroot"
-```
+Publish with `dotnet publish -c Release -f net9.0-browserwasm`, then deploy the `publish/wwwroot` folder. For full CI/CD workflows (GitHub Actions, Azure Pipelines), see [references/03-hosting-deployment.md](references/03-hosting-deployment.md).
 
 ### Nginx
 
-Required MIME types for Wasm:
-```nginx
-types {
-    application/wasm wasm;
-    application/octet-stream clr;
-    application/json json;
-    application/javascript js;
-}
-
-# Enable compression
-gzip on;
-gzip_types application/wasm application/javascript application/json;
-
-# Cache immutable assets
-location /_framework/ {
-    add_header Cache-Control "public, max-age=31536000, immutable";
-}
-```
+Required: `application/wasm` MIME type, gzip compression for `.wasm`/`.js`/`.json`, and immutable cache headers for `/_framework/` assets. For full Nginx config, see [references/03-hosting-deployment.md](references/03-hosting-deployment.md).
 
 ### Local Testing
 
@@ -166,20 +137,7 @@ Configured automatically when PWA is enabled. Handles offline caching of app she
 
 ### Manifest
 
-```json
-{
-  "name": "My Uno App",
-  "short_name": "UnoApp",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#6200EE",
-  "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
-  ]
-}
-```
+Standard PWA manifest with `name`, `short_name`, `start_url`, `display: standalone`, `theme_color`, and icon entries (192px + 512px). For a complete manifest template, see [references/04-performance-pwa.md](references/04-performance-pwa.md).
 
 ### Install Prompt
 
@@ -193,6 +151,15 @@ PWA install is handled by the browser. Ensure manifest and service worker are co
 - Expecting threading to work (not supported on .NET 9 Wasm)
 - Not adding `inspectUri` to `launchSettings.json` for debugging
 - Using deprecated bootstrapper properties from 8.x (see migration list in docs)
+
+## Related Skills
+
+| Skill | Use instead when... |
+|-------|-------------------|
+| `uno-migration-troubleshoot` | Upgrading bootstrapper versions or fixing Wasm build errors |
+| `uno-platform-agent` | General project setup, MVVM/MVUX, or multi-platform targeting |
+| `winui-xaml` | Async/threading best practices or XAML performance optimization |
+| `uno-toolkit-controls` | Using responsive breakpoints with ResponsiveExtension |
 
 ## Detailed References
 

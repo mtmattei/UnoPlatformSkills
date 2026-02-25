@@ -1,7 +1,9 @@
 ---
 name: uno-platform-agent
-description: "Comprehensive Uno Platform development patterns for Single Project architecture, MVVM/MVUX, navigation, styling, platform-specific code, and custom controls. Use when: (1) Creating new Uno Platform projects, (2) Implementing MVVM or MVUX patterns, (3) Setting up navigation or styling, (4) Writing platform-specific code, (5) Building custom controls, (6) Optimizing build configuration with Uno.Sdk"
-license: "Apache 2.0 (patterns from Uno Platform Extensions)"
+description: "Comprehensive Uno Platform development patterns for Single Project architecture, MVVM/MVUX, navigation, styling, platform-specific code, and custom controls. Use when: (1) Creating new Uno Platform projects, (2) Implementing MVVM or MVUX patterns, (3) Setting up navigation or styling, (4) Writing platform-specific code, (5) Building custom controls, (6) Optimizing build configuration with Uno.Sdk. Do NOT use for: XAML-only best practices (see winui-xaml), Toolkit control APIs (see uno-toolkit-controls), or service-layer extensions (see uno-extensions-services)."
+license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
+metadata:
+  version: "1.0.0"
 ---
 
 # Uno Platform Development Patterns
@@ -66,45 +68,28 @@ Best practices extracted from uno.extensions (50+ modules) and 17+ production ap
 - ItemsRepeater for better performance than ListView
 - Lottie animations for splash screens and loading indicators
 
-## uno.extensions Conventions
+## Extension Patterns
 
-### Dependency Injection
-```csharp
-public static IHostBuilder UseAuthentication(
-    this IHostBuilder builder,
-    Action<IAuthenticationBuilder> build)
-{
-    return builder.ConfigureServices((ctx, services) =>
-    {
-        services.TryAddSingleton<IAuthenticationService, AuthenticationService>();
-    });
-}
-```
+For DI, authentication, HTTP, configuration, and logging patterns, see the `uno-extensions-services` skill. Key convention: always return the builder for chaining, use `TryAdd*` for services.
 
-### Builder Pattern
-```csharp
-public interface IFeatureBuilder : IBuilder
-{
-    IHostBuilder? HostBuilder { get; init; }
-}
+## Common Mistakes
 
-public record FeatureBuilder : BaseBuilder, IFeatureBuilder
-{
-    public FeatureSettings Settings { get; set; } = new();
-}
-```
+- Putting `net9.0` first in TargetFrameworks (causes UNOB0011/UNOB0013) - always list platform TFMs first
+- Using `{Binding StringFormat=...}` which is NOT supported - use `<Run>` elements or computed properties
+- Hardcoding colors instead of using `{ThemeResource}` references
+- Manually creating HttpClient instances instead of using `.UseHttp()` with DI
+- Mixing StackPanel with per-child Margin instead of AutoLayout with Spacing
 
-### Named Service Resolution
-```csharp
-services.AddNamedSingleton<TService, TImplementation>("name");
-var service = serviceProvider.GetRequiredNamedService<TService>("name");
-```
+## Related Skills
 
-### Extension Method Conventions
-- HostBuilderExtensions.cs for IHostBuilder extensions
-- ServiceCollectionExtensions.cs for IServiceCollection extensions
-- Always return the builder for chaining
-- Use TryAdd* for services to allow override
+| Skill | Use instead when... |
+|-------|-------------------|
+| `winui-xaml` | Optimizing XAML layout, binding, async, collections, memory, or accessibility |
+| `uno-extensions-services` | Configuring hosting, DI, authentication, HTTP clients, or logging |
+| `uno-toolkit-controls` | Using Toolkit controls (AutoLayout, NavigationBar, SafeArea, TabBar, Chip) |
+| `uno-csharp-markup` | Building UI in C# instead of XAML |
+| `uno-migration-troubleshoot` | Migrating from UWP/WPF/Silverlight or fixing build errors |
+| `uno-wasm-pwa` | Targeting WebAssembly or adding PWA support |
 
 ## Detailed References
 

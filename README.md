@@ -4,7 +4,7 @@ Claude Code skills for Uno Platform development and WinUI 3 XAML best practices.
 
 ## Example Prompt: 
 
-Use the winui-xaml and uno-platform-skills to review our Uno Platform codebase for best practices. Identify issues and opportunities across XAML, MVVM, navigation, performance, resource usage, theming, accessibility, and cross-platform considerations. Propose concrete improvements with rationale, prioritized by impact/effort, and include example code snippets or patch-style diffs for the highest-impact changes.
+Use the winui-xaml and uno-platform-agent skills to review our Uno Platform codebase for best practices. Identify issues and opportunities across XAML, MVVM, navigation, performance, resource usage, theming, accessibility, and cross-platform considerations. Propose concrete improvements with rationale, prioritized by impact/effort, and include example code snippets or patch-style diffs for the highest-impact changes.
 
 ## Skills
 
@@ -15,7 +15,7 @@ Use the winui-xaml and uno-platform-skills to review our Uno Platform codebase f
 Uno Platform development patterns for Single Project architecture, MVVM/MVUX, navigation, styling, platform-specific code, and custom controls. Extracted from uno.extensions (50+ modules) and 17+ production applications.
 
 ```
-uno-platform-agent-skills/
+uno-platform-agent/
 ├── SKILL.md
 └── references/
     ├── 01-project-setup-critical.md
@@ -33,7 +33,7 @@ uno-platform-agent-skills/
 WinUI 3 and XAML best practices for layout, binding, async operations, collections, rendering, memory management, accessibility, and localization.
 
 ```
-winui-xaml-skills/
+winui-xaml/
 ├── SKILL.md
 └── references/
     ├── 01-Layout.md
@@ -57,7 +57,7 @@ winui-xaml-skills/
 Uno Platform Extensions for hosting, DI, authentication (MSAL/OIDC), HTTP clients (Kiota/Refit), configuration, and logging.
 
 ```
-uno-extensions-services-skills/
+uno-extensions-services/
 ├── SKILL.md
 └── references/
     ├── 01-hosting-di.md
@@ -71,7 +71,7 @@ uno-extensions-services-skills/
 Uno Toolkit UI controls and helpers: AutoLayout, NavigationBar, SafeArea, TabBar, Card, Chip, DrawerControl, and extensions (CommandExtensions, ResponsiveExtension, ItemsRepeaterExtensions).
 
 ```
-uno-toolkit-controls-skills/
+uno-toolkit-controls/
 ├── SKILL.md
 └── references/
     ├── 01-layout-controls.md
@@ -85,7 +85,7 @@ uno-toolkit-controls-skills/
 WebAssembly and Progressive Web App development: bootstrapper, PWA manifests, debugging, hosting, performance, and deployment.
 
 ```
-uno-wasm-pwa-skills/
+uno-wasm-pwa/
 ├── SKILL.md
 └── references/
     ├── 01-setup-bootstrapper.md
@@ -99,7 +99,7 @@ uno-wasm-pwa-skills/
 C# Markup for code-first UI: fluent API, strongly-typed data binding, resources, styles, templates, and Uno Toolkit integration.
 
 ```
-uno-csharp-markup-skills/
+uno-csharp-markup/
 ├── SKILL.md
 └── references/
     ├── 01-getting-started.md
@@ -113,7 +113,7 @@ uno-csharp-markup-skills/
 Migration paths (Single Project, .NET upgrades, WPF/Silverlight) and troubleshooting common build/runtime errors across all platforms.
 
 ```
-uno-migration-troubleshoot-skills/
+uno-migration-troubleshoot/
 ├── SKILL.md
 └── references/
     ├── 01-single-project-migration.md
@@ -128,24 +128,24 @@ Symlink each skill directory into `~/.claude/skills/`:
 
 ```bash
 # Linux/macOS
-ln -s /path/to/uno-platform-agent-skills ~/.claude/skills/uno-platform-agent
-ln -s /path/to/winui-xaml-skills ~/.claude/skills/winui-xaml
-ln -s /path/to/uno-extensions-services-skills ~/.claude/skills/uno-extensions-services
-ln -s /path/to/uno-toolkit-controls-skills ~/.claude/skills/uno-toolkit-controls
-ln -s /path/to/uno-wasm-pwa-skills ~/.claude/skills/uno-wasm-pwa
-ln -s /path/to/uno-csharp-markup-skills ~/.claude/skills/uno-csharp-markup
-ln -s /path/to/uno-migration-troubleshoot-skills ~/.claude/skills/uno-migration-troubleshoot
+ln -s /path/to/uno-platform-agent ~/.claude/skills/uno-platform-agent
+ln -s /path/to/winui-xaml ~/.claude/skills/winui-xaml
+ln -s /path/to/uno-extensions-services ~/.claude/skills/uno-extensions-services
+ln -s /path/to/uno-toolkit-controls ~/.claude/skills/uno-toolkit-controls
+ln -s /path/to/uno-wasm-pwa ~/.claude/skills/uno-wasm-pwa
+ln -s /path/to/uno-csharp-markup ~/.claude/skills/uno-csharp-markup
+ln -s /path/to/uno-migration-troubleshoot ~/.claude/skills/uno-migration-troubleshoot
 ```
 
 ```powershell
 # Windows (run as admin or with developer mode enabled)
-mklink /D %USERPROFILE%\.claude\skills\uno-platform-agent C:\path\to\uno-platform-agent-skills
-mklink /D %USERPROFILE%\.claude\skills\winui-xaml C:\path\to\winui-xaml-skills
-mklink /D %USERPROFILE%\.claude\skills\uno-extensions-services C:\path\to\uno-extensions-services-skills
-mklink /D %USERPROFILE%\.claude\skills\uno-toolkit-controls C:\path\to\uno-toolkit-controls-skills
-mklink /D %USERPROFILE%\.claude\skills\uno-wasm-pwa C:\path\to\uno-wasm-pwa-skills
-mklink /D %USERPROFILE%\.claude\skills\uno-csharp-markup C:\path\to\uno-csharp-markup-skills
-mklink /D %USERPROFILE%\.claude\skills\uno-migration-troubleshoot C:\path\to\uno-migration-troubleshoot-skills
+mklink /D %USERPROFILE%\.claude\skills\uno-platform-agent C:\path\to\uno-platform-agent
+mklink /D %USERPROFILE%\.claude\skills\winui-xaml C:\path\to\winui-xaml
+mklink /D %USERPROFILE%\.claude\skills\uno-extensions-services C:\path\to\uno-extensions-services
+mklink /D %USERPROFILE%\.claude\skills\uno-toolkit-controls C:\path\to\uno-toolkit-controls
+mklink /D %USERPROFILE%\.claude\skills\uno-wasm-pwa C:\path\to\uno-wasm-pwa
+mklink /D %USERPROFILE%\.claude\skills\uno-csharp-markup C:\path\to\uno-csharp-markup
+mklink /D %USERPROFILE%\.claude\skills\uno-migration-troubleshoot C:\path\to\uno-migration-troubleshoot
 ```
 
 ## Expansion Roadmap

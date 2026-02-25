@@ -1,6 +1,9 @@
 ---
 name: uno-csharp-markup
-description: "C# Markup for Uno Platform: code-first UI with fluent API, strongly-typed data binding, resources, styles, templates, and Uno Toolkit integration. Use when: (1) Building UI in C# instead of XAML, (2) Using fluent data binding with expression trees, (3) Applying styles and templates in C# Markup, (4) Integrating Uno Toolkit controls in C# Markup, (5) Setting up a C# Markup project from scratch"
+description: "C# Markup for Uno Platform: code-first UI with fluent API, strongly-typed data binding, resources, styles, templates, and Uno Toolkit integration. Use when: (1) Building UI in C# instead of XAML, (2) Using fluent data binding with expression trees, (3) Applying styles and templates in C# Markup, (4) Integrating Uno Toolkit controls in C# Markup, (5) Setting up a C# Markup project from scratch, (6) Converting XAML patterns to C# Markup. Do NOT use for: XAML-based UI (see winui-xaml) or Toolkit control reference (see uno-toolkit-controls)."
+license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
+metadata:
+  version: "1.0.0"
 ---
 
 # Uno Platform C# Markup
@@ -200,22 +203,18 @@ this.DataContext<MainModel>((page, vm) => page
 - Not adding `CSharpMarkup` to UnoFeatures (extension methods won't be generated)
 - Mixing XAML and C# Markup in the same page (use one or the other per page)
 
-## Key Differences from XAML
+## Related Skills
 
-| XAML | C# Markup |
-|------|-----------|
-| `{x:Bind Path}` | `() => vm.Path` |
-| `{Binding Path, Mode=TwoWay}` | `x => x.Bind(() => vm.Path).TwoWay()` |
-| `{StaticResource Key}` | `StaticResource.Get<T>("Key")` |
-| `{ThemeResource Key}` | `ThemeResource.Get<T>("Key")` |
-| `x:Uid="MyPage.Title"` | Set programmatically or use attached properties |
-| `.xaml` + `.xaml.cs` | Single `.cs` file |
+| Skill | Use instead when... |
+|-------|-------------------|
+| `winui-xaml` | Writing UI in XAML instead of C# Markup |
+| `uno-toolkit-controls` | Looking up Toolkit control APIs, properties, or XAML examples |
+| `uno-platform-agent` | Setting up projects, MVVM/MVUX patterns, or navigation |
+| `uno-extensions-services` | Configuring hosting, DI, authentication, or HTTP clients |
 
-## Limitations
+## XAML Equivalence and Limitations
 
-- **Hot Design** only supports XAML markup files (not C# Markup) at this time
-- XAML-only markup extensions (`{utu:Responsive}`) need alternative patterns in C# Markup
-- Localization with `x:Uid` requires manual string loading via `ResourceLoader`
+For a full XAML-to-C# Markup mapping table, see [references/01-getting-started.md](references/01-getting-started.md). Key limitations: Hot Design supports XAML only (not C# Markup), `{utu:Responsive}` needs VisualStateManager alternatives, and `x:Uid` localization requires manual `ResourceLoader` usage.
 
 ## Detailed References
 

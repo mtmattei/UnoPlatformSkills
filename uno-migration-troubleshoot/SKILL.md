@@ -1,6 +1,9 @@
 ---
 name: uno-migration-troubleshoot
-description: "Migration paths and troubleshooting for Uno Platform: upgrading to Single Project, migrating from UWP/WPF/Silverlight, .NET version upgrades, and resolving common build/runtime errors. Use when: (1) Migrating to Uno.Sdk Single Project, (2) Upgrading from .NET 8 to .NET 9, (3) Migrating from WPF or Silverlight, (4) Fixing common build errors (UNOB0011, UNOB0013), (5) Resolving platform-specific runtime issues, (6) Troubleshooting Visual Studio 2022 problems"
+description: "Migration paths and troubleshooting for Uno Platform: upgrading to Single Project, migrating from UWP/WPF/Silverlight, .NET version upgrades, and resolving common build/runtime errors. Use when: (1) Migrating to Uno.Sdk Single Project, (2) Upgrading from .NET 8 to .NET 9, (3) Migrating from WPF or Silverlight, (4) Fixing common build errors (UNOB0011, UNOB0013), (5) Resolving platform-specific runtime issues, (6) Troubleshooting Visual Studio 2022 problems. Do NOT use for: new project setup (see uno-platform-agent) or Wasm-specific optimization (see uno-wasm-pwa)."
+license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
+metadata:
+  version: "1.0.0"
 ---
 
 # Uno Platform Migration and Troubleshooting
@@ -182,6 +185,15 @@ net9.0-android;net9.0-ios;net9.0-browserwasm;net9.0-desktop;net9.0
 - Keeping deprecated MSBuild properties from older bootstrapper versions
 - Ignoring `uno-check` warnings about outdated workloads
 - Copying `App.xaml.cs` without merging custom `OnLaunched` logic
+
+## Related Skills
+
+| Skill | Use instead when... |
+|-------|-------------------|
+| `uno-platform-agent` | Creating new projects (not migrating existing ones) |
+| `uno-extensions-services` | Configuring auth, HTTP, or DI (this skill covers breaking changes in those areas) |
+| `uno-wasm-pwa` | Wasm bootstrapper setup, debugging, or deployment (not just migration) |
+| `winui-xaml` | XAML best practices and performance (not migration-specific issues) |
 
 ## Detailed References
 

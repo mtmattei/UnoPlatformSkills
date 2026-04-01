@@ -1,165 +1,88 @@
 # Uno Platform Skills
 
-Claude Code skills for Uno Platform development and WinUI 3 XAML best practices.
+Claude Code agent skills for Uno Platform, WinUI 3, and .NET development. Each skill encodes knowledge directly — no external doc fetching required at runtime.
 
-## Example Prompt: 
+## Example Prompt
 
-Use the winui-xaml and uno-platform-agent skills to review our Uno Platform codebase for best practices. Identify issues and opportunities across XAML, MVVM, navigation, performance, resource usage, theming, accessibility, and cross-platform considerations. Propose concrete improvements with rationale, prioritized by impact/effort, and include example code snippets or patch-style diffs for the highest-impact changes.
+> Use the winui-xaml, uno-platform-agent, and mvux skills to review our Uno Platform codebase for best practices. Identify issues across XAML, MVUX, navigation, performance, theming, accessibility, and cross-platform considerations. Propose concrete improvements prioritized by impact.
 
 ## Skills
 
-### Core Skills (Existing)
+### Consolidated Knowledge Hubs
 
-#### uno-platform-agent
+These 4 hubs replaced ~70 individual doc-fetching skills. Each encodes complete API knowledge with correct/incorrect code patterns, common mistakes, and reference files.
 
-Uno Platform development patterns for Single Project architecture, MVVM/MVUX, navigation, styling, platform-specific code, and custom controls. Extracted from uno.extensions (50+ modules) and 17+ production applications.
+| Skill | Refs | Description |
+|---|---|---|
+| [`mvux`](mvux/) | 6 | MVUX reactive architecture: IFeed/IState, FeedView, commands, selection, messaging, pagination |
+| [`uno-navigation`](uno-navigation/) | 7 | Navigation Extensions: regions, routes, ViewMap/DataViewMap, qualifiers, NavigationView, TabBar, dialogs |
+| [`uno-material`](uno-material/) | 5 | Material Design 3 theming: colors, typography, button/TextBox/FAB styles, lightweight styling, migration |
+| [`uno-toolkit`](uno-toolkit/) | 7 | Toolkit controls: AutoLayout, SafeArea, Card, Chip, TabBar, NavigationBar, DrawerControl, extensions |
 
-```
-uno-platform-agent/
-├── SKILL.md
-└── references/
-    ├── 01-project-setup-critical.md
-    ├── 02-build-configuration-critical.md
-    ├── 03-mvvm-mvux-patterns-high.md
-    ├── 04-navigation-high.md
-    ├── 05-styling-theming-medium.md
-    ├── 06-platform-specific-high.md
-    ├── 07-data-http-medium.md
-    └── 08-custom-controls-medium.md
-```
+### Platform & Architecture Skills
 
-#### winui-xaml
+| Skill | Refs | Description |
+|---|---|---|
+| [`uno-platform-agent`](uno-platform-agent/) | 8 | Comprehensive Uno Platform patterns: Single Project, MVVM/MVUX, navigation, styling, platform-specific code |
+| [`winui-xaml`](winui-xaml/) | 12 | WinUI 3 XAML best practices: layout, binding, async, collections, rendering, memory, accessibility |
+| [`dotnet-csharp`](dotnet-csharp/) | 5 | .NET C# best practices: performance, security, async/await, modern patterns |
+| [`uno-extensions-services`](uno-extensions-services/) | 4 | Extensions: hosting, DI, authentication (MSAL/OIDC), HTTP clients, configuration, logging |
+| [`uno-csharp-markup`](uno-csharp-markup/) | 4 | C# Markup: fluent API, strongly-typed binding, resources, styles, Toolkit integration |
+| [`uno-wasm-pwa`](uno-wasm-pwa/) | 4 | WebAssembly and PWA: bootstrapper, manifests, debugging, hosting, performance |
 
-WinUI 3 and XAML best practices for layout, binding, async operations, collections, rendering, memory management, accessibility, and localization.
+### Migration & Troubleshooting
 
-```
-winui-xaml/
-├── SKILL.md
-└── references/
-    ├── 01-Layout.md
-    ├── 02-Binding.md
-    ├── 03-Async-Threading.md
-    ├── 04-Collections.md
-    ├── 05-Rendering.md
-    ├── 06-Memory.md
-    ├── 07-Accessibility.md
-    ├── 08-Localization.md
-    ├── 09-Styles-Theming.md
-    ├── 10-XAML-Loading.md
-    ├── 11-Navigation.md
-    └── 12-Input.md
-```
+| Skill | Refs | Description |
+|---|---|---|
+| [`wpf-to-uno-migration`](wpf-to-uno-migration/) | 5 | WPF → Uno migration: namespace mapping, XAML replacements, NavigationView, settings, services |
+| [`uno-migration-troubleshoot`](uno-migration-troubleshoot/) | 4 | Migration paths (Single Project, .NET upgrades, Silverlight) and common build/runtime errors |
 
-### Expansion Skills (P0)
+### Testing
 
-#### uno-extensions-services
-
-Uno Platform Extensions for hosting, DI, authentication (MSAL/OIDC), HTTP clients (Kiota/Refit), configuration, and logging.
-
-```
-uno-extensions-services/
-├── SKILL.md
-└── references/
-    ├── 01-hosting-di.md
-    ├── 02-authentication.md
-    ├── 03-http-clients.md
-    └── 04-configuration-logging.md
-```
-
-#### uno-toolkit-controls
-
-Uno Toolkit UI controls and helpers: AutoLayout, NavigationBar, SafeArea, TabBar, Card, Chip, DrawerControl, and extensions (CommandExtensions, ResponsiveExtension, ItemsRepeaterExtensions).
-
-```
-uno-toolkit-controls/
-├── SKILL.md
-└── references/
-    ├── 01-layout-controls.md
-    ├── 02-navigation-controls.md
-    ├── 03-data-controls.md
-    └── 04-helpers-extensions.md
-```
-
-#### uno-wasm-pwa
-
-WebAssembly and Progressive Web App development: bootstrapper, PWA manifests, debugging, hosting, performance, and deployment.
-
-```
-uno-wasm-pwa/
-├── SKILL.md
-└── references/
-    ├── 01-setup-bootstrapper.md
-    ├── 02-debugging.md
-    ├── 03-hosting-deployment.md
-    └── 04-performance-pwa.md
-```
-
-#### uno-csharp-markup
-
-C# Markup for code-first UI: fluent API, strongly-typed data binding, resources, styles, templates, and Uno Toolkit integration.
-
-```
-uno-csharp-markup/
-├── SKILL.md
-└── references/
-    ├── 01-getting-started.md
-    ├── 02-binding-resources.md
-    ├── 03-styles-templates.md
-    └── 04-toolkit-integration.md
-```
-
-#### uno-migration-troubleshoot
-
-Migration paths (Single Project, .NET upgrades, WPF/Silverlight) and troubleshooting common build/runtime errors across all platforms.
-
-```
-uno-migration-troubleshoot/
-├── SKILL.md
-└── references/
-    ├── 01-single-project-migration.md
-    ├── 02-dotnet-version-upgrade.md
-    ├── 03-wpf-silverlight-migration.md
-    └── 04-common-errors.md
-```
+| Skill | Refs | Description |
+|---|---|---|
+| [`uno-app-ui-testing`](uno-app-ui-testing/) | 2 | Automated UI testing for Uno Platform apps via MCP tools |
+| [`uno-app-test-assertions`](uno-app-test-assertions/) | 0 | Assertion and validation patterns for UI testing |
 
 ## Installation
 
-Symlink each skill directory into `~/.claude/skills/`:
+Clone this repo, then symlink each skill into `~/.claude/skills/`:
 
 ```bash
 # Linux/macOS
-ln -s /path/to/uno-platform-agent ~/.claude/skills/uno-platform-agent
-ln -s /path/to/winui-xaml ~/.claude/skills/winui-xaml
-ln -s /path/to/uno-extensions-services ~/.claude/skills/uno-extensions-services
-ln -s /path/to/uno-toolkit-controls ~/.claude/skills/uno-toolkit-controls
-ln -s /path/to/uno-wasm-pwa ~/.claude/skills/uno-wasm-pwa
-ln -s /path/to/uno-csharp-markup ~/.claude/skills/uno-csharp-markup
-ln -s /path/to/uno-migration-troubleshoot ~/.claude/skills/uno-migration-troubleshoot
+REPO_DIR="/path/to/UnoPlatformSkills"
+for skill in "$REPO_DIR"/*/; do
+  name=$(basename "$skill")
+  ln -sf "$skill" ~/.claude/skills/"$name"
+done
 ```
 
 ```powershell
-# Windows (run as admin or with developer mode enabled)
-mklink /D %USERPROFILE%\.claude\skills\uno-platform-agent C:\path\to\uno-platform-agent
-mklink /D %USERPROFILE%\.claude\skills\winui-xaml C:\path\to\winui-xaml
-mklink /D %USERPROFILE%\.claude\skills\uno-extensions-services C:\path\to\uno-extensions-services
-mklink /D %USERPROFILE%\.claude\skills\uno-toolkit-controls C:\path\to\uno-toolkit-controls
-mklink /D %USERPROFILE%\.claude\skills\uno-wasm-pwa C:\path\to\uno-wasm-pwa
-mklink /D %USERPROFILE%\.claude\skills\uno-csharp-markup C:\path\to\uno-csharp-markup
-mklink /D %USERPROFILE%\.claude\skills\uno-migration-troubleshoot C:\path\to\uno-migration-troubleshoot
+# Windows (developer mode or admin)
+$repoDir = "C:\path\to\UnoPlatformSkills"
+Get-ChildItem -Directory $repoDir | ForEach-Object {
+    $target = Join-Path $env:USERPROFILE ".claude\skills\$($_.Name)"
+    if (Test-Path $target) { Remove-Item $target -Recurse -Force }
+    New-Item -ItemType Junction -Path $target -Target $_.FullName
+}
 ```
 
-## Expansion Roadmap
+## Architecture
 
-See [SKILLS-EXPANSION-PLAN.md](SKILLS-EXPANSION-PLAN.md) for the full taxonomy, coverage matrix, and prioritized backlog.
+Each skill follows the **Archetype B (Technical/Knowledge)** template:
 
-### P1 (Should Have)
-- **uno-platform-apis** - WinRT APIs, sensors, storage, geolocation
-- **uno-publishing** - Store publishing, desktop and web deployment
-- **uno-hot-design** - Hot Reload, Hot Design, Uno Studio tooling
+```
+skill-name/
+├── SKILL.md              # Hub: Quick Reference, Key Concepts, Critical Patterns, Common Mistakes
+└── references/
+    ├── 01-topic.md       # Deep-dive: Impact levels, CORRECT/WRONG code, edge cases
+    ├── 02-topic.md
+    └── ...
+```
 
-### P2 (Nice to Have)
-- **uno-figma-integration** - Figma plugin, design-to-code workflow
-- **uno-maui-embedding** - MAUI embedding, third-party controls
+- **Hub** provides actionable guidance for common cases
+- **References** are loaded on-demand for specific sub-topics
+- **Docs Fallback** section in each hub provides MCP search queries when encoded knowledge may be outdated
 
 ## Related Resources
 

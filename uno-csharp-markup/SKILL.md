@@ -1,6 +1,12 @@
 ---
 name: uno-csharp-markup
-description: "C# Markup for Uno Platform: code-first UI with fluent API, strongly-typed data binding, resources, styles, templates, and Uno Toolkit integration. Use when: (1) Building UI in C# instead of XAML, (2) Using fluent data binding with expression trees, (3) Applying styles and templates in C# Markup, (4) Integrating Uno Toolkit controls in C# Markup, (5) Setting up a C# Markup project from scratch, (6) Converting XAML patterns to C# Markup. Do NOT use for: XAML-based UI (see winui-xaml) or Toolkit control reference (see uno-toolkit-controls)."
+description: "C# Markup for Uno Platform: code-first UI with fluent API, strongly-typed data binding, resources, styles, templates, and Uno Toolkit integration. Use when: (1) Building UI in C# instead of XAML, (2) Using fluent data binding with expression trees, (3) Applying styles and templates in C# Markup, (4) Integrating Uno Toolkit controls in C# Markup, (5) Setting up a C# Markup project from scratch, (6) Converting XAML patterns to C# Markup. Do NOT use for: XAML-based UI (see winui-xaml) or Toolkit control reference (see uno-toolkit)."
+intent: >-
+  Build Uno Platform UI using C# Markup fluent API with strongly-typed data binding, resources, styles, and templates.
+best_for:
+  - "Building UI in C# instead of XAML"
+  - "Using fluent data binding with expression trees"
+  - "Integrating Toolkit controls in C# Markup"
 license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
 metadata:
   version: "1.0.0"
@@ -208,7 +214,7 @@ this.DataContext<MainModel>((page, vm) => page
 | Skill | Use instead when... |
 |-------|-------------------|
 | `winui-xaml` | Writing UI in XAML instead of C# Markup |
-| `uno-toolkit-controls` | Looking up Toolkit control APIs, properties, or XAML examples |
+| `uno-toolkit` | Looking up Toolkit control APIs, properties, or XAML examples |
 | `uno-platform-agent` | Setting up projects, MVVM/MVUX patterns, or navigation |
 | `uno-extensions-services` | Configuring hosting, DI, authentication, or HTTP clients |
 

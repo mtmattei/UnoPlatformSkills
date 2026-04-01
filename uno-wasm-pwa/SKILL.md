@@ -1,6 +1,12 @@
 ---
 name: uno-wasm-pwa
 description: "Uno Platform WebAssembly and Progressive Web App development: bootstrapper setup, PWA manifests, debugging, hosting, performance optimization, and deployment. Use when: (1) Targeting WebAssembly with Uno Platform, (2) Adding PWA support with service workers, (3) Debugging Wasm apps, (4) Deploying to Azure Static Web Apps or Nginx, (5) Optimizing Wasm payload size and load time, (6) Configuring AOT compilation for Wasm. Do NOT use for: general project setup (see uno-platform-agent) or .NET version migration (see uno-migration-troubleshoot)."
+intent: >-
+  Configure and deploy Uno Platform apps targeting WebAssembly and Progressive Web Apps with service workers, manifests, and hosting.
+best_for:
+  - "Targeting WebAssembly with Uno Platform"
+  - "Adding PWA support with service workers"
+  - "Debugging and optimizing Wasm performance"
 license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
 metadata:
   version: "1.0.0"
@@ -159,7 +165,7 @@ PWA install is handled by the browser. Ensure manifest and service worker are co
 | `uno-migration-troubleshoot` | Upgrading bootstrapper versions or fixing Wasm build errors |
 | `uno-platform-agent` | General project setup, MVVM/MVUX, or multi-platform targeting |
 | `winui-xaml` | Async/threading best practices or XAML performance optimization |
-| `uno-toolkit-controls` | Using responsive breakpoints with ResponsiveExtension |
+| `uno-toolkit` | Using responsive breakpoints with ResponsiveExtension |
 
 ## Detailed References
 

@@ -1,6 +1,12 @@
 ---
 name: winui-xaml
-description: "WinUI 3 and XAML best practices for layout, binding, async operations, collections, rendering, memory management, accessibility, and localization. Use when: (1) Working with WinUI 3 or Uno Platform XAML, (2) Optimizing UI performance, (3) Implementing data binding with x:Bind, (4) Managing collections and virtualization, (5) Ensuring accessibility compliance, (6) Handling async operations on UI thread, (7) Preventing memory leaks, (8) Implementing localization. Do NOT use for: C# Markup (see uno-csharp-markup) or Uno Toolkit controls (see uno-toolkit-controls)."
+description: "WinUI 3 and XAML best practices for layout, binding, async operations, collections, rendering, memory management, accessibility, and localization. Use when: (1) Working with WinUI 3 or Uno Platform XAML, (2) Optimizing UI performance, (3) Implementing data binding with x:Bind, (4) Managing collections and virtualization, (5) Ensuring accessibility compliance, (6) Handling async operations on UI thread, (7) Preventing memory leaks, (8) Implementing localization. Do NOT use for: C# Markup (see uno-csharp-markup) or Uno Toolkit controls (see uno-toolkit)."
+intent: >-
+  Apply WinUI 3 and XAML best practices for layout, binding, async, collections, rendering, memory, accessibility, and localization.
+best_for:
+  - "Optimizing XAML layout and rendering performance"
+  - "Implementing accessible UI controls"
+  - "Working with collections and virtualization"
 license: "CC-BY-4.0 (patterns derived from Microsoft Learn documentation)"
 metadata:
   version: "1.0.0"
@@ -27,18 +33,18 @@ Twelve categories of XAML best practices validated against WinUI 3 and Uno Platf
 
 | # | Category | Impact | Key Topics |
 |---|----------|--------|------------|
-| 1 | [Layout](references/01-Layout.md) | HIGH | Panel selection, visual tree depth, AutoLayout, responsive design |
-| 2 | [Binding](references/02-Binding.md) | HIGH | x:Bind vs Binding, modes, function binding |
-| 3 | [Async & Threading](references/03-Async-Threading.md) | CRITICAL | UI thread, DispatcherQueue, parallelization |
-| 4 | [Collections & Virtualization](references/04-Collections.md) | CRITICAL | ListView, ItemsRepeater, incremental loading |
-| 5 | [Rendering & Composition](references/05-Rendering.md) | MEDIUM-HIGH | Composition APIs, animations, caching |
-| 6 | [Memory Management](references/06-Memory.md) | HIGH | Event handlers, leaks, resource cleanup |
-| 7 | [Accessibility](references/07-Accessibility.md) | HIGH | AutomationProperties, keyboard navigation |
-| 8 | [Localization](references/08-Localization.md) | MEDIUM | x:Uid, .resw files, runtime switching |
-| 9 | [Styles & Theming](references/09-Styles-Theming.md) | MEDIUM | ResourceDictionary, ThemeDictionaries, lightweight styling |
-| 10 | [XAML Loading](references/10-XAML-Loading.md) | CRITICAL | x:Load, deferred loading, startup optimization |
-| 11 | [Navigation](references/11-Navigation.md) | MEDIUM-HIGH | Frame caching, page lifecycle |
-| 12 | [Input & Interaction](references/12-Input.md) | MEDIUM | Touch targets, gesture handling |
+| 1 | [Layout](references/01-layout.md) | HIGH | Panel selection, visual tree depth, AutoLayout, responsive design |
+| 2 | [Binding](references/02-binding.md) | HIGH | x:Bind vs Binding, modes, function binding |
+| 3 | [Async & Threading](references/03-async-threading.md) | CRITICAL | UI thread, DispatcherQueue, parallelization |
+| 4 | [Collections & Virtualization](references/04-collections.md) | CRITICAL | ListView, ItemsRepeater, incremental loading |
+| 5 | [Rendering & Composition](references/05-rendering.md) | MEDIUM-HIGH | Composition APIs, animations, caching |
+| 6 | [Memory Management](references/06-memory.md) | HIGH | Event handlers, leaks, resource cleanup |
+| 7 | [Accessibility](references/07-accessibility.md) | HIGH | AutomationProperties, keyboard navigation |
+| 8 | [Localization](references/08-localization.md) | MEDIUM | x:Uid, .resw files, runtime switching |
+| 9 | [Styles & Theming](references/09-styles-theming.md) | MEDIUM | ResourceDictionary, ThemeDictionaries, lightweight styling |
+| 10 | [XAML Loading](references/10-xaml-loading.md) | CRITICAL | x:Load, deferred loading, startup optimization |
+| 11 | [Navigation](references/11-navigation.md) | MEDIUM-HIGH | Frame caching, page lifecycle |
+| 12 | [Input & Interaction](references/12-input.md) | MEDIUM | Touch targets, gesture handling |
 
 ## Impact Levels
 
@@ -91,7 +97,7 @@ All patterns validated against Uno Platform with notes for:
 | Skill | Use instead when... |
 |-------|-------------------|
 | `uno-platform-agent` | Setting up projects, MVVM/MVUX, navigation, or platform-specific code |
-| `uno-toolkit-controls` | Using AutoLayout, NavigationBar, SafeArea, TabBar, or ResponsiveExtension |
+| `uno-toolkit` | Using AutoLayout, NavigationBar, SafeArea, TabBar, or ResponsiveExtension |
 | `uno-csharp-markup` | Building UI in C# instead of XAML |
 | `uno-extensions-services` | Configuring hosting, DI, authentication, or HTTP clients |
 

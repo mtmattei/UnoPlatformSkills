@@ -1,6 +1,6 @@
 ---
 name: uno-platform-agent
-description: "Comprehensive Uno Platform development patterns for Single Project architecture, MVVM/MVUX, navigation, styling, platform-specific code, and custom controls. Use when: (1) Creating new Uno Platform projects, (2) Implementing MVVM or MVUX patterns, (3) Setting up navigation or styling, (4) Writing platform-specific code, (5) Building custom controls, (6) Optimizing build configuration with Uno.Sdk. Do NOT use for: XAML-only best practices (see winui-xaml), Toolkit control APIs (see uno-toolkit-controls), or service-layer extensions (see uno-extensions-services)."
+description: "Comprehensive Uno Platform development patterns for Single Project architecture, MVVM/MVUX, navigation, styling, platform-specific code, and custom controls. Use when: (1) Creating new Uno Platform projects, (2) Implementing MVVM or MVUX patterns, (3) Setting up navigation or styling, (4) Writing platform-specific code, (5) Building custom controls, (6) Optimizing build configuration with Uno.Sdk. Do NOT use for: XAML-only best practices (see winui-xaml), Toolkit control APIs (see uno-toolkit), or service-layer extensions (see uno-extensions-services)."
 license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
 metadata:
   version: "1.0.0"
@@ -86,7 +86,7 @@ For DI, authentication, HTTP, configuration, and logging patterns, see the `uno-
 |-------|-------------------|
 | `winui-xaml` | Optimizing XAML layout, binding, async, collections, memory, or accessibility |
 | `uno-extensions-services` | Configuring hosting, DI, authentication, HTTP clients, or logging |
-| `uno-toolkit-controls` | Using Toolkit controls (AutoLayout, NavigationBar, SafeArea, TabBar, Chip) |
+| `uno-toolkit` | Using Toolkit controls (AutoLayout, NavigationBar, SafeArea, TabBar, Chip) |
 | `uno-csharp-markup` | Building UI in C# instead of XAML |
 | `uno-migration-troubleshoot` | Migrating from UWP/WPF/Silverlight or fixing build errors |
 | `uno-wasm-pwa` | Targeting WebAssembly or adding PWA support |

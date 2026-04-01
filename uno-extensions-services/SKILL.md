@@ -1,6 +1,12 @@
 ---
 name: uno-extensions-services
-description: "Uno Platform Extensions for hosting, dependency injection, authentication, HTTP clients, configuration, logging, and storage. Use when: (1) Setting up IHostBuilder and DI container, (2) Adding MSAL or OIDC authentication, (3) Configuring HTTP clients with Kiota or Refit, (4) Loading appsettings.json configuration with IOptions, (5) Setting up logging with ILogger or Serilog, (6) Using IWriteableOptions for runtime config changes. Do NOT use for: project setup or MVVM patterns (see uno-platform-agent) or UI controls (see uno-toolkit-controls)."
+description: "Uno Platform Extensions for hosting, dependency injection, authentication, HTTP clients, configuration, logging, and storage. Use when: (1) Setting up IHostBuilder and DI container, (2) Adding MSAL or OIDC authentication, (3) Configuring HTTP clients with Kiota or Refit, (4) Loading appsettings.json configuration with IOptions, (5) Setting up logging with ILogger or Serilog, (6) Using IWriteableOptions for runtime config changes. Do NOT use for: project setup or MVVM patterns (see uno-platform-agent) or UI controls (see uno-toolkit)."
+intent: >-
+  Configure and use Uno Platform Extensions for hosting, DI, authentication, HTTP, configuration, logging, and storage.
+best_for:
+  - "Setting up IHostBuilder and dependency injection"
+  - "Adding MSAL or OIDC authentication"
+  - "Configuring typed HTTP clients"
 license: "Apache 2.0 (patterns derived from Uno Platform documentation)"
 metadata:
   version: "1.0.0"

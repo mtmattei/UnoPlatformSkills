@@ -212,7 +212,7 @@ new Style<Button>()
 - Using `Theme.Brushes` without adding the `Uno.Themes.WinUI.Markup` NuGet package. The `Theme` static class is not available from the base Markup package alone.
 - Mixing `Theme.Brushes` calls with hardcoded hex color strings. This breaks theme consistency and dark mode support.
 - Using `Theme.Styles` for a control type that does not have a Material style variant. Not all WinUI controls have Material-themed styles. Check the Uno Themes documentation for supported controls.
-**Uno Platform Notes**: Cupertino themes do not currently have C# Markup support. Only Material and Fluent themes have companion `.Markup` packages.
+**Uno Platform Notes**: Cupertino themes do not currently have C# Markup support. Material has full C# Markup support via `Uno.Themes.WinUI.Markup` (providing `Theme.Brushes`, `Theme.Styles`). Fluent has a companion `.Markup` package but verify feature parity with Material before relying on strongly-typed helpers.
 **Reference**: https://platform.uno/docs/articles/external/uno.themes/doc/lightweight-styling.html#c-markup
 
 ---

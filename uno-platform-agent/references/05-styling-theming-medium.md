@@ -94,8 +94,8 @@
 <!-- WRONG -->
 <Border Background="#FF6B35" />
 
-<!-- CORRECT -->
-<Border Background="{ThemeResource PrimaryColor}" />
+<!-- CORRECT — use {Role}Brush for Brush properties, {Role}Color for Color properties -->
+<Border Background="{ThemeResource PrimaryBrush}" />
 ```
 
 ### References
@@ -138,9 +138,9 @@
 
         <!-- Primary Button Style -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button"
-               BasedOn="{StaticResource MaterialFilledButtonStyle}">
-            <Setter Property="Background" Value="{ThemeResource PrimaryColor}" />
-            <Setter Property="Foreground" Value="{ThemeResource OnPrimaryColor}" />
+               BasedOn="{StaticResource FilledButtonStyle}">
+            <Setter Property="Background" Value="{ThemeResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="{ThemeResource OnPrimaryBrush}" />
             <Setter Property="Height" Value="56" />
             <Setter Property="CornerRadius" Value="28" />
             <Setter Property="Translation" Value="0,0,4" />
@@ -153,9 +153,9 @@
 
         <!-- Secondary Button Style -->
         <Style x:Key="SecondaryButtonStyle" TargetType="Button"
-               BasedOn="{StaticResource MaterialOutlinedButtonStyle}">
-            <Setter Property="BorderBrush" Value="{ThemeResource PrimaryColor}" />
-            <Setter Property="Foreground" Value="{ThemeResource PrimaryColor}" />
+               BasedOn="{StaticResource OutlinedButtonStyle}">
+            <Setter Property="BorderBrush" Value="{ThemeResource PrimaryBrush}" />
+            <Setter Property="Foreground" Value="{ThemeResource PrimaryBrush}" />
             <Setter Property="Height" Value="56" />
             <Setter Property="CornerRadius" Value="28" />
         </Style>

@@ -17,8 +17,8 @@ Controls, layout helpers, and attached extensions for cross-platform Uno Platfor
 
 | # | Rule | Impact |
 |---|------|--------|
-| 1 | Add `Toolkit` to `<UnoFeatures>`; use `MaterialToolkitTheme` (NOT separate `MaterialTheme` + `ToolkitResources`) | Duplicate resources / style conflicts |
-| 2 | XAML namespace: `xmlns:utu="using:Uno.Toolkit.UI"` | Build error if wrong namespace |
+| 1 | **csproj**: Add `Material;Toolkit` to `<UnoFeatures>` (two separate features). **App.xaml**: Use `MaterialToolkitTheme` (NOT separate `MaterialTheme` + `ToolkitResources`) | Duplicate resources / style conflicts |
+| 2 | XAML namespace for **controls**: `xmlns:utu="using:Uno.Toolkit.UI"`. Theme declaration in **App.xaml** uses a different namespace: `using:Uno.Toolkit.UI.Material` (or `.Cupertino`) | Build error if wrong namespace |
 | 3 | AutoLayout: Figma-like layout — set `Orientation`, `Spacing`, `Justify`, `PrimaryAxisAlignment`, `CounterAxisAlignment` | Broken layout without explicit alignment |
 | 4 | SafeArea: ALWAYS use on mobile pages with TextBox — keyboard WILL obscure inputs without it | Invisible input fields on iOS/Android |
 | 5 | TabBar: ALWAYS apply a style (`BottomTabBarStyle`, `TopTabBarStyle`, `VerticalTabBarStyle`) to the TabBar container | Unstyled/invisible TabBar |
@@ -45,11 +45,18 @@ Controls, layout helpers, and attached extensions for cross-platform Uno Platfor
 
 ### XAML Namespace
 
-All Toolkit controls and extensions share one namespace:
+Toolkit controls and extensions share one namespace in **page XAML**:
 
 ```xml
 xmlns:utu="using:Uno.Toolkit.UI"
 ```
+
+The **theme declaration** in App.xaml uses a theme-specific sub-namespace:
+
+| Theme | Namespace |
+|-------|-----------|
+| Material + Toolkit | `xmlns:utu="using:Uno.Toolkit.UI.Material"` → `MaterialToolkitTheme` |
+| Cupertino + Toolkit | `xmlns:utu="using:Uno.Toolkit.UI.Cupertino"` → `CupertinoToolkitTheme` |
 
 ---
 
@@ -180,8 +187,8 @@ xmlns:utu="using:Uno.Toolkit.UI"
 
 | Mistake | Symptom | Fix |
 |---------|---------|-----|
-| Using `MaterialTheme` + `ToolkitResources` separately | Duplicate resource keys, unpredictable styles | Use single `MaterialToolkitTheme` |
-| Missing `Toolkit` in `<UnoFeatures>` | Build error: Toolkit types not found | Add `Toolkit` (or `Material;Toolkit`) to `<UnoFeatures>` |
+| Using `MaterialTheme` + `ToolkitResources` separately | Duplicate resource keys, unpredictable styles | Use single `MaterialToolkitTheme` (or `CupertinoToolkitTheme`) |
+| Missing `Toolkit` in `<UnoFeatures>` | Build error: Toolkit types not found | Add `Toolkit` (or `Material;Toolkit`) to `<UnoFeatures>` — these are separate feature values |
 | TabBar without a style (`BottomTabBarStyle`, etc.) | TabBar invisible or unstyled | Always set a `Style` on `TabBar` |
 | SafeArea missing on mobile form pages | Keyboard covers TextBox inputs | Wrap form content in `SafeArea` with `Insets="VisibleBounds,SoftInput"` |
 | `Background` on child instead of `ShadowContainer` | Inner shadows silently ignored | Set `Background` on `ShadowContainer`, not the child |

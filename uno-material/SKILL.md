@@ -15,8 +15,8 @@ metadata:
 
 | # | Rule | Impact |
 |---|------|--------|
-| 1 | Add `Material` to `<UnoFeatures>` — with Toolkit: `Material;Toolkit` | Setup will fail without it |
-| 2 | Use `MaterialToolkitTheme` (NOT both `MaterialTheme` + `ToolkitResources` separately) | Duplicate resources / style conflicts |
+| 1 | **csproj**: Add `Material` to `<UnoFeatures>` — with Toolkit: `Material;Toolkit` (two separate features) | Setup will fail without it |
+| 2 | **App.xaml**: Use `MaterialToolkitTheme` from `using:Uno.Toolkit.UI.Material` (NOT both `MaterialTheme` + `ToolkitResources` separately). Without Toolkit, use `MaterialTheme` from `using:Uno.Material` | Duplicate resources / style conflicts |
 | 3 | Typography short keys: `DisplayLarge`, `HeadlineMedium`, `BodySmall` — NOT `TitleLargeTextBlockStyle` | Silent blank text |
 | 4 | Wrong resource keys cause silent blank pages — no compile error | Hours of debugging |
 | 5 | Color resources: `{ThemeResource PrimaryBrush}`, `{ThemeResource OnSurfaceBrush}` | Theme-switching breaks with StaticResource |
